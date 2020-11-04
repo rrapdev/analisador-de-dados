@@ -1,0 +1,14 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+    steps:
+      - checkout
+      - run: mvn clean install
+      - run: mvn jacoco:report
+      - store_artifacts:
+          path:  target
+      - run:
+          name: Send to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)
