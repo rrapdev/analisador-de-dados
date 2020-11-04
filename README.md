@@ -23,10 +23,10 @@ Após análise dos dados, um resumo é gerado com as seguintes informações:
    O pior vendedor: {nome da pessoa que menos vendeu};
 ```
 
-Um novo arquivo, com os dados do resumo, é gerado na seguinte pasta:
+Um novo arquivo (com terminação *.done.dat*), com os dados do resumo, é gerado na seguinte pasta:
 
 ```
-   src/main/resources/data/out/{nome_do_arquivo}.dat
+   src/main/resources/data/out/{nome_do_arquivo}.done.dat
 ```
 
 #### Agendamento (Scheduling)
