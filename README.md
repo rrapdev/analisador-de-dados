@@ -53,9 +53,9 @@ estimular o processamento de arquivos de vendas de forma reativa. Para testá-la
  
  #### Testes:
  
-Foram criadas suites de testes para para agrupar os projetos e facilitar sua execução:
+Foram criadas suites de testes para agrupar os projetos e facilitar sua execução:
  
-  * AllTests: Agrupamento de todos os testes do sistema, incluindo testes unitários e de integração;
+  * AllTests: Agrupamento de todos os testes do sistema, incluindo testes unitários e de integração / aceitação;
   * CucumberTest: Agrupamento dos testes de aceitação baseados em BDD.
   * UnitTests: Agrupamento de todos os testes de unidade do projeto.
   
