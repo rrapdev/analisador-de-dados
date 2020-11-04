@@ -1,3 +1,5 @@
+[![rrapdev](https://circleci.com/gh/rrapdev/analisador-de-dados.svg?style=shield)](https://codecov.io/gh/rrapdev/analisador-de-dados) [![codecov](https://codecov.io/gh/rrapdev/analisador-de-dados/branch/main/graph/badge.svg?token=NT4GgfHsFN)](https://codecov.io/gh/rrapdev/analisador-de-dados)
+
 # Analisador de Dados
 Este sistema foi desenvolvido como parte de uma avaliação técnica para o Agibank, a partir da DBC Company.
 
