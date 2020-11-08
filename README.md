@@ -24,7 +24,7 @@ Este sistema foi desenvolvido como parte de uma avaliação técnica para o Agib
   background através do uso das anotações do Spring @EnableScheduling e @Scheduled;
   
  * Para representar a lógica de negócio, foi adicionada chamada de validação dos arquivos de vendas na classe de serviço ```ProcessadorArquivosImpl.class```. No
- entando a implementação da validação foi incluída na classe ```ArquivoVenda.class```.
+ entanto a implementação da validação foi incluída na classe ```ArquivoVenda.class```.
 
 #### Funcionamento:
 Sistema para importação de lotes de arquivos de vendas. Os arquivos são processados, analisados e um relatório é
