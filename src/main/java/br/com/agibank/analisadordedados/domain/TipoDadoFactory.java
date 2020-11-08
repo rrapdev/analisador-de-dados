@@ -1,9 +1,4 @@
-package br.com.agibank.analisadordedados.service.component.impl;
-
-import br.com.agibank.analisadordedados.domain.Cliente;
-import br.com.agibank.analisadordedados.domain.TipoDado;
-import br.com.agibank.analisadordedados.domain.Venda;
-import br.com.agibank.analisadordedados.domain.Vendedor;
+package br.com.agibank.analisadordedados.domain;
 
 import java.util.HashMap;
 import java.util.Map;

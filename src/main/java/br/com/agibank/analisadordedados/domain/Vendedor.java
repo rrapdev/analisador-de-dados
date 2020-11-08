@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class Vendedor extends TipoDado {
+public class Vendedor implements TipoDado {
     private String cpf;
     private String nome;
     private BigDecimal salario;

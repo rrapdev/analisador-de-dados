@@ -9,7 +9,6 @@ import org.junit.runners.Suite;
         ClienteTest.class,
         ItemVendaTest.class,
         ResumoConsolidadoTest.class,
-        TipoDadoTest.class,
         VendaTest.class,
         VendedorTest.class
 })

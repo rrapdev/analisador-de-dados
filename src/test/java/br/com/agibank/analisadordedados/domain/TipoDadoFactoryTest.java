@@ -7,29 +7,30 @@ import org.junit.runners.JUnit4;
 import java.math.BigDecimal;
 
 import static br.com.agibank.analisadordedados.util.ConstantesUtil.*;
+import static br.com.agibank.analisadordedados.util.ConstantesUtil.DADOS_VENDA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4.class)
-public class TipoDadoTest {
+public class TipoDadoFactoryTest {
 
     @Test
     public void aoExecutarMetodoDescobrirComTipoDadoVendedorDeveriaRetornarEntidadeVendedor() {
-        TipoDado vendedor = TipoDado.descobrir(DADOS_VENDEDOR);
+        TipoDado vendedor = TipoDadoFactory.criar(DADOS_VENDEDOR);
         assertTrue(vendedor instanceof Vendedor);
         verificarSeDadosVendedorFormaImportados((Vendedor) vendedor);
     }
 
     @Test
     public void aoExecutarMetodoDescobrirComTipoDadoClienteDeveriaRetornarEntidadeCliente() {
-        TipoDado cliente = TipoDado.descobrir(DADOS_CLIENTE);
+        TipoDado cliente = TipoDadoFactory.criar(DADOS_CLIENTE);
         assertTrue(cliente instanceof Cliente);
         verificarSeDadosClienteFormaImportados((Cliente) cliente);
     }
 
     @Test
     public void aoExecutarMetodoDescobrirComTipoDadoVendaDeveriaRetornarEntidadeVenda() {
-        TipoDado venda = TipoDado.descobrir(DADOS_VENDA);
+        TipoDado venda = TipoDadoFactory.criar(DADOS_VENDA);
         assertTrue(venda instanceof Venda);
         verificarSeDadosVendasForamImportados((Venda) venda);
     }
@@ -57,4 +58,5 @@ public class TipoDadoTest {
     public static final int ID_ITEM_VENDA_1 = 1;
     public static final int QUANTIDADE_ITEM_VENDA_10 = 10;
     public static final int PRECO_ITEM_VENDA_100 = 100;
+
 }

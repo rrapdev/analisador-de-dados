@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Cliente extends TipoDado {
+public class Cliente implements TipoDado {
     private String cnpj;
     private String nome;
     private String areaNegocio;

@@ -4,7 +4,7 @@ import br.com.agibank.analisadordedados.domain.Arquivo;
 import br.com.agibank.analisadordedados.domain.Resumo;
 import br.com.agibank.analisadordedados.domain.ResumoConsolidado;
 import br.com.agibank.analisadordedados.service.AnalisadorDadosService;
-import br.com.agibank.analisadordedados.service.component.impl.TipoDadoFactory;
+import br.com.agibank.analisadordedados.domain.TipoDadoFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

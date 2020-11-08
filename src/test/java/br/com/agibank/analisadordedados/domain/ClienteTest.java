@@ -37,6 +37,17 @@ public class ClienteTest {
         assertSame(cliente, retorno);
     }
 
+    @Test
+    public void aoExecutarMetodosGetsSets() {
+        cliente = new Cliente();
+        cliente.setCnpj(CNPJ_123456);
+        cliente.setNome(NOME_KENT_BECK);
+        cliente.setAreaNegocio(AREA_NEGOCIO_TESTES);
+        assertEquals(NOME_KENT_BECK, cliente.getNome());
+        assertEquals(CNPJ_123456, cliente.getCnpj());
+        assertEquals(AREA_NEGOCIO_TESTES, cliente.getAreaNegocio());
+    }
+
     public static final String CNPJ_123456 = "123456";
     public static final String NOME_KENT_BECK = "Kent Beck";
     public static final String AREA_NEGOCIO_TESTES = "Testes";

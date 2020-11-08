@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class Venda extends TipoDado {
+public class Venda implements TipoDado {
     private Integer id;
     private String nomeVendedor;
     private List<ItemVenda> itensVenda = new ArrayList<>();
