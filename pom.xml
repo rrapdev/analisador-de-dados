@@ -131,8 +131,7 @@
 						</goals>
 						<configuration>
 							<append>true</append>
-							<destFile>${project.basedir}/../target/jacoco.exec</destFile>
-
+							<destFile>${project.basedir}/analisador-de-dados/target/jacoco.exec</destFile>
 						</configuration>
 					</execution>
 					<execution>
@@ -142,7 +141,7 @@
 							<goal>report</goal>
 						</goals>
 						<configuration>
-							<dataFile>${project.basedir}/../target/jacoco.exec</dataFile>
+							<dataFile>${project.basedir}/analisador-de-dados/target/jacoco.exec</dataFile>
 							<outputDirectory>${project.reporting.outputDirectory}/code-coverage</outputDirectory>
 						</configuration>
 					</execution>
