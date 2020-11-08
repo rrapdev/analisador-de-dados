@@ -141,6 +141,10 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
+						<configuration>
+							<dataFile>${project.basedir}/../target/jacoco.exec</dataFile>
+							<outputDirectory>${project.reporting.outputDirectory}/code-coverage</outputDirectory>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
