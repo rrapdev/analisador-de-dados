@@ -13,4 +13,9 @@ public class ConstantesUtil {
     public static final String[] DADOS_VENDA = {"003", "1", "1-10-100", "Martin"};
     public static final String[] DADOS_VENDA_TOTAL_1500 = {"003", "1", "[1-10-100,2-1-500]", "Martin"};
 
+    public static final String PATH_COMPLETO_DIRETORIO_DATA_IN = PATH_DIRETORIO_RESOURCES + DIRETORIO_DATA_IN;
+    public static final String SEPARADOR = "/";
+
+    public static final String CAMINHO_DIRETORIO_PADRAO_ENTRADA_DADOS = "src/main/resources/data/in";
+    public static final String CAMINHO_DIRETORIO_PADRAO_SAIDA_DADOS = "src/main/resources/data/out/";
 }

@@ -10,13 +10,13 @@
 	</parent>
 	<groupId>br.com.agibank</groupId>
 	<artifactId>analisador-de-dados</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>analisador-de-dados</name>
 	<description>Projeto para análise de dados do Agibank por DBC Company</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -30,11 +30,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
@@ -43,11 +38,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -132,7 +122,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.5</version>
+				<version>0.8.6</version>
 				<executions>
 					<execution>
 						<id>agent-for-ut</id>
@@ -152,7 +142,6 @@
 							<goal>report</goal>
 						</goals>
 						<configuration>
-							<destFile>${project.basedir}/../target/jacoco.exec</destFile>
 							<dataFile>${project.basedir}/../target/jacoco.exec</dataFile>
 							<outputDirectory>${project.reporting.outputDirectory}/code-coverage</outputDirectory>
 						</configuration>

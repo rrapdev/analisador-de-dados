@@ -32,7 +32,7 @@ public class VendedorTest {
     @Test
     public void aoExecutarMetodoAdicionarAoRelatorioDeveriaDeveriaRetornarRelatorioComVendedorAdicionado() {
         vendedor = new Vendedor();
-        RelatorioResumoVendas relatorio = new RelatorioResumoVendas();
+        ResumoConsolidado relatorio = new ResumoConsolidado();
         vendedor.adicionarAoRelatorio(relatorio);
         Vendedor retorno = relatorio.getVendedores().get(0);
         assertSame(vendedor, retorno);

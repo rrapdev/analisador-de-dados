@@ -1,12 +1,16 @@
-package br.com.agibank.analisadordedados.domain;
+package br.com.agibank.analisadordedados.service.component.impl;
+
+import br.com.agibank.analisadordedados.domain.Cliente;
+import br.com.agibank.analisadordedados.domain.TipoDado;
+import br.com.agibank.analisadordedados.domain.Venda;
+import br.com.agibank.analisadordedados.domain.Vendedor;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class TipoDado {
+public class TipoDadoFactory {
 
-    @Deprecated
-    public static TipoDado descobrir(String[] dados) {
+    public static TipoDado criar(String[] dados) {
         Map<String, TipoDado> tiposDisponiveis = new HashMap<>();
         tiposDisponiveis.put(TIPO_VENDEDOR_001, new Vendedor());
         tiposDisponiveis.put(TIPO_CLIENTE_002, new Cliente());
@@ -17,9 +21,6 @@ public abstract class TipoDado {
 
         return entidade;
     }
-
-    public abstract void importarDados(String[] dados);
-    public abstract ResumoConsolidado adicionarAoRelatorio(ResumoConsolidado relatorio);
 
     public static final String TIPO_VENDEDOR_001 = "001";
     public static final String TIPO_CLIENTE_002 = "002";

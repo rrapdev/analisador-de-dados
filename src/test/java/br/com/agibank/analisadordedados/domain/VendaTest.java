@@ -43,7 +43,7 @@ public class VendaTest {
 
     @Test
     public void aoExecutarMetodoAdicionarAoRelatorioDeveriaDeveriaRetornarRelatorioComVendaAdicionado() {
-        RelatorioResumoVendas relatorio = new RelatorioResumoVendas();
+        ResumoConsolidado relatorio = new ResumoConsolidado();
         venda.adicionarAoRelatorio(relatorio);
         Venda retorno = relatorio.getVendas().get(0);
         assertSame(venda, retorno);

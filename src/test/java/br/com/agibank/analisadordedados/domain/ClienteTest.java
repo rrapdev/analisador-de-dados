@@ -31,7 +31,7 @@ public class ClienteTest {
     @Test
     public void aoExecutarMetodoAdicionarAoRelatorioDeveriaDeveriaRetornarRelatorioComClienteAdicionado() {
         cliente = ClienteBuilder.umClienteValido().build();
-        RelatorioResumoVendas relatorio = new RelatorioResumoVendas();
+        ResumoConsolidado relatorio = new ResumoConsolidado();
         cliente.adicionarAoRelatorio(relatorio);
         Cliente retorno = relatorio.getClientes().get(0);
         assertSame(cliente, retorno);

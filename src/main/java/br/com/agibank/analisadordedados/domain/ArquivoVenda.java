@@ -1,29 +1,46 @@
 package br.com.agibank.analisadordedados.domain;
 
-import lombok.Data;
+import br.com.agibank.analisadordedados.exception.FalhaAoAcessarDiretorioArquivoException;
+import br.com.agibank.analisadordedados.exception.NegocioException;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
-@Data
-public class ArquivoVenda {
+import static br.com.agibank.analisadordedados.exception.FalhaAoAcessarDiretorioArquivoException.MENSAGEM_FALHA_AO_LER_ARQUIVO;
 
-    private String nome;
+public class ArquivoVenda implements Arquivo {
+
     private Path path;
-    private RelatorioResumoVendas relatorioResumoVendas;
 
-    public ArquivoVenda(Path path) {
-        this.nome = path.getFileName().toString();
+    @Override
+    public void validar() {
+        if (!getPath().toFile().getName().endsWith(".dat")) {
+            throw new NegocioException("O arquivo a ser processado não possui extensão válida .dat!");
+        }
+    }
+
+    @Override
+    public void setPath(Path path) {
         this.path = path;
     }
 
-    public String getCaminhoCompletoArquivoSaida() {
-        String nomeSaida = this.getNome().replace(EXTENSAO_VALIDA_DAT, EXTENSAO_SAIDA_DONE_DAT);
-        return DIRETORIO_SAIDA + SEPARADOR + nomeSaida;
+    @Override
+    public Path getPath() {
+        return this.path;
     }
 
-    public static final String DIRETORIO_ENTRADA = "src/main/resources/data/in";
-    public static final String DIRETORIO_SAIDA = "src/main/resources/data/out";
-    public static final String EXTENSAO_VALIDA_DAT = ".dat";
-    public static final String EXTENSAO_SAIDA_DONE_DAT = ".done.dat";
-    public static final String SEPARADOR = "/";
+    @Override
+    public String obterConteudoDoArquivo() {
+        try {
+            return Files.readString(getPath());
+        } catch (IOException e) {
+            throw new FalhaAoAcessarDiretorioArquivoException(MENSAGEM_FALHA_AO_LER_ARQUIVO);
+        }
+    }
+
+    @Override
+    public String obterNomeDoArquivoConsolidado() {
+        return getPath().toFile().getName().replace(".dat", ".done.dat");
+    }
 }

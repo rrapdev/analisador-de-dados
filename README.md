@@ -3,6 +3,24 @@
 # Analisador de Dados
 Este sistema foi desenvolvido como parte de uma avaliação técnica para o Agibank, a partir da DBC Company.
 
+#### Aletrações importantes na versão 0.0.2-SNAPSHOT:
+
+ * Removida API Rest que estimulava processamento de arquivos. O Processamento de arquivos de vendas agora roda em 
+ background através do uso das anotações do Spring @EnableScheduling e @Scheduled;
+ 
+ * Adoção de pricípios SOLID e refatoramento nas classes dos projetos para melhorar código limpo e reduzir 
+ responsabilidades das classes, aumentando
+  o desacoplamento e a coesão, assim como facilitando a criação dos testes automáticos;
+  
+ * O projeto refatorado para utilizar interfaces em vez de implementações, melhorando a componentização e flexibilidade
+ da aplicação;
+ 
+ * A versão do Java foi atualizada para 11 e importantes recursos de manipulação de arquivos e strings foram utilizados, como 
+ `Files.readString()`, `Files.createFile()` e `Files.writeString`.
+ 
+ * SpringBoot foi utilizado para injeção de dependência das classes, executar o monitoramento de tempos em tempos, 
+ assim como para carregar o contexto da aplicação e para facilitar a criação e execução dos testes.
+
 #### Funcionamento:
 Sistema para importação de lotes de arquivos de vendas. Os arquivos são processados, analisados e um relatório é
 produzido com os dados consolidados.

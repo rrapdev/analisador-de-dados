@@ -3,29 +3,28 @@ package br.com.agibank.analisadordedados.cucumber.stepdefs.processarnovosarquivo
 import br.com.agibank.analisadordedados.cucumber.datatable.ArquivoDataTable;
 import br.com.agibank.analisadordedados.cucumber.datatable.LinhaArquivoDataTable;
 import br.com.agibank.analisadordedados.cucumber.datatable.ResumoDataTable;
-import br.com.agibank.analisadordedados.cucumber.gateway.ProcessadorArquivosGateway;
 import br.com.agibank.analisadordedados.cucumber.stepdefs.Stepdefs;
+import br.com.agibank.analisadordedados.exception.NegocioException;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
+import cucumber.api.java.pt.E;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static br.com.agibank.analisadordedados.util.ConstantesUtil.*;
 import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class ProcessarNovosArquivosVendaStepdefs extends Stepdefs {
 
     public static final boolean EXPECTATIVA_QUE_O_ARQUIVO_EXISTA = true;
     public static final boolean EXPECTATIVA_QUE_NAO_EXISTA_ARQUIVOS = false;
-    @Autowired
-    private ProcessadorArquivosGateway processadorArquivosGateway;
-
     private final ArquivoDataTable arquivoEntrada = new ArquivoDataTable();
+
+    private String mensagemExceptionEsperada = "O arquivo a ser processado não possui extensão válida .dat!";
+    private String mensagemExceptionRetornada = "";
 
     @Before
     public void inicializarContexto() {
@@ -41,26 +40,6 @@ public class ProcessarNovosArquivosVendaStepdefs extends Stepdefs {
         manipuladorArquivoTestHelper.criarArquivo(arquivoEntrada);
     }
 
-    @Quando("^processar novos arquivos de venda$")
-    public void processarNovosArquivosDeVenda() throws Exception {
-        resultado = processadorArquivosGateway.processarArquivosVendas();
-    }
-
-    @Entao("^deveria gerar arquivo com nome \"([^\"]*)\" na pasta \"([^\"]*)\"$")
-    public void deveriaGerarArquivoComNomeNaPasta(String nomeArquivoSaida, String diretorioSaida) throws Throwable {
-        resultado.andExpect(status().isOk());
-        ArquivoDataTable arquivoSaidaEsperado = new ArquivoDataTable(nomeArquivoSaida, diretorioSaida);
-        assertEquals(EXPECTATIVA_QUE_O_ARQUIVO_EXISTA,
-                     manipuladorArquivoTestHelper.verificarSeArquivoExiste(arquivoSaidaEsperado));
-    }
-
-    @Entao("^deveria nao gerar nenhum arquivo na pasta \"([^\"]*)\"$")
-    public void deveriaNaoGerarNenhumArquivoNaPasta(String diretorioSaida) throws Throwable {
-        resultado.andExpect(status().isOk());
-        assertEquals(EXPECTATIVA_QUE_NAO_EXISTA_ARQUIVOS,
-                manipuladorArquivoTestHelper.verificarSeExisteAlgumArquivoEmDiretorioSaida(diretorioSaida));
-    }
-
     @Dado("^que existe um arquivo, a ser processado, com os seguintes dados$")
     public void queExisteUmArquivoASerProcessadoComOsSeguintesDados(List<LinhaArquivoDataTable> linhasArquivo) {
         ArquivoDataTable arquivo = new ArquivoDataTable();
@@ -70,10 +49,38 @@ public class ProcessarNovosArquivosVendaStepdefs extends Stepdefs {
         manipuladorArquivoTestHelper.criarArquivo(arquivo);
     }
 
+    @Quando("^passarem dez segundos$")
+    public void passaremDezSegundos() throws InterruptedException {
+        Thread.sleep(5000);
+    }
+
+    @Quando("^processar arquivos de vendas$")
+    public void processarArquivosDeVendas() {
+        try {
+            processadorArquivosTask.processarNovosArquivosDeVendas();
+        } catch (NegocioException e) {
+            mensagemExceptionRetornada = e.getMessage();
+        }
+
+    }
+
+    @Entao("^deveria gerar arquivo com nome \"([^\"]*)\" na pasta \"([^\"]*)\"$")
+    public void deveriaGerarArquivoComNomeNaPasta(String nomeArquivoSaida, String diretorioSaida) throws Throwable {
+        ArquivoDataTable arquivoSaidaEsperado = new ArquivoDataTable(nomeArquivoSaida, diretorioSaida);
+        assertEquals(EXPECTATIVA_QUE_O_ARQUIVO_EXISTA,
+                     manipuladorArquivoTestHelper.verificarSeArquivoExiste(arquivoSaidaEsperado));
+    }
+
+    @Entao("^deveria nao gerar nenhum arquivo na pasta \"([^\"]*)\"$")
+    public void deveriaNaoGerarNenhumArquivoNaPasta(String diretorioSaida) throws Throwable {
+
+        assertEquals(EXPECTATIVA_QUE_NAO_EXISTA_ARQUIVOS,
+                manipuladorArquivoTestHelper.verificarSeExisteAlgumArquivoEmDiretorioSaida(diretorioSaida));
+    }
+
     @Entao("^deveria gerar arquivo contendo o seguinte resumo$")
     public void deveriaGerarArquivoContendoOSeguinteResumo(List<ResumoDataTable> resumos) throws Exception {
         ResumoDataTable resumo = resumos.get(0);
-        resultado.andExpect(status().isOk());
 
         ArquivoDataTable arquivoSaidaEsperado = new ArquivoDataTable();
         arquivoSaidaEsperado.setNome(NOME_ARQUIVO_VALIDO_DONE_DAT);
@@ -88,6 +95,13 @@ public class ProcessarNovosArquivosVendaStepdefs extends Stepdefs {
         assertEquals(resumo.getQuantidadeVendedores(), arquivoGerado.getQuantidadeVendedores());
         assertEquals(resumo.getIdVendaMaisCara(), arquivoGerado.getIdVendaMaisCara());
         assertEquals(resumo.getNomePiorVendedor(), arquivoGerado.getNomePiorVendedor());
+    }
+
+    @Entao("^deveria gerar arquivo com nome \"([^\"]*)\" na pasta \"([^\"]*)\" atraves de agendador$")
+    public void deveriaGerarArquivoComNomeNaPastaAtravesDeAgendador(String nomeArquivoSaida, String diretorioSaida) throws Throwable {
+        ArquivoDataTable arquivoSaidaEsperado = new ArquivoDataTable(nomeArquivoSaida, diretorioSaida);
+        assertEquals(EXPECTATIVA_QUE_O_ARQUIVO_EXISTA,
+                manipuladorArquivoTestHelper.verificarSeArquivoExiste(arquivoSaidaEsperado));
     }
 
     private List<LinhaArquivoDataTable> gerarLinhasValidasDoArquivo() {
@@ -107,15 +121,8 @@ public class ProcessarNovosArquivosVendaStepdefs extends Stepdefs {
         return linha;
     }
 
-    @Quando("^passarem cinco segundos$")
-    public void passaremCincoSegundos() throws InterruptedException {
-        Thread.sleep(10000);
-    }
-
-    @Entao("^deveria gerar arquivo com nome \"([^\"]*)\" na pasta \"([^\"]*)\" atraves de agendador$")
-    public void deveriaGerarArquivoComNomeNaPastaAtravesDeAgendador(String nomeArquivoSaida, String diretorioSaida) throws Throwable {
-        ArquivoDataTable arquivoSaidaEsperado = new ArquivoDataTable(nomeArquivoSaida, diretorioSaida);
-        assertEquals(EXPECTATIVA_QUE_O_ARQUIVO_EXISTA,
-                manipuladorArquivoTestHelper.verificarSeArquivoExiste(arquivoSaidaEsperado));
+    @E("^deveria retornar mensagem de excecao arquivo sem extensao valida$")
+    public void deveriaRetornarMensagemDeExcecaoArquivoSemExtensaoValida() {
+        assertEquals(mensagemExceptionEsperada, mensagemExceptionRetornada);
     }
 }

@@ -8,7 +8,7 @@ import org.junit.runners.Suite;
         ArquivoVendaTest.class,
         ClienteTest.class,
         ItemVendaTest.class,
-        RelatorioResumoVendasTest.class,
+        ResumoConsolidadoTest.class,
         TipoDadoTest.class,
         VendaTest.class,
         VendedorTest.class

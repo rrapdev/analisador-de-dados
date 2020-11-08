@@ -18,7 +18,7 @@ public class Cliente extends TipoDado {
     }
 
     @Override
-    public RelatorioResumoVendas adicionarAoRelatorio(RelatorioResumoVendas relatorio) {
+    public ResumoConsolidado adicionarAoRelatorio(ResumoConsolidado relatorio) {
         relatorio.adicionarCliente(this);
         return relatorio;
     }
