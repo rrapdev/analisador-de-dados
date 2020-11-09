@@ -1,8 +1,7 @@
 [![rrapdev](https://circleci.com/gh/rrapdev/analisador-de-dados.svg?style=shield)](https://github.com/rrapdev/analisador-de-dados) [![codecov](https://codecov.io/gh/rrapdev/analisador-de-dados/branch/main/graph/badge.svg?token=NT4GgfHsFN)](https://codecov.io/gh/rrapdev/analisador-de-dados)
 
 # Analisador de Dados
-Este sistema foi desenvolvido como parte de uma avaliação técnica de Java, SpringBoot e Orientação a Objetos.
-
+Este sistema foi desenvolvido como parte de uma avaliação técnica de Programação Orienta a Objetos com Java, SpringBoot e Testes Automáticos.
 
 #### Alterações importantes na versão 0.0.2-SNAPSHOT:
 
