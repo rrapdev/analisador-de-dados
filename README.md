@@ -62,7 +62,7 @@ Para rodar a sua aplicação a partir de um container docker, certifique-se de q
 docker-compose instalados. Depois crie uma imagem docker da aplicação executando o comando a partir da raiz do projeto:
  
 ```
-./mvnw verify jib:dockerBuild -Dskiptests=true
+./mvnw verify jib:dockerBuild
 ```
  Por fim, rode seu container utilizando o comando:
  
