@@ -43,6 +43,11 @@ public class ArquivoServiceImpl implements ArquivoService {
                 CAMINHO_DIRETORIO_PADRAO_SAIDA_DADOS + arquivo.obterNomeDoArquivoConsolidado());
     }
 
+    @Override
+    public void apagarArquivoProcessado(Arquivo arquivo) {
+        manipuladorArquivos.apagarArquivo(arquivo);
+    }
+
     public static final String CAMINHO_DIRETORIO_PADRAO_ENTRADA_DADOS = "src/main/resources/data/in";
     public static final String CAMINHO_DIRETORIO_PADRAO_SAIDA_DADOS = "src/main/resources/data/out/";
 }

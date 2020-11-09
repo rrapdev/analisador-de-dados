@@ -118,4 +118,13 @@ public class ProcessadorArquivosImplTest {
         verify(arquivoServiceMock).gerarArquivoConsolidado(outroResumoEsperadoMock, outroArquivoEsperadoMock);
     }
 
+    @Test
+    public void aoProcessarDeveriaApagarArquivoConsolidado() {
+        Mockito.when(arquivoServiceMock.lerArquivos()).thenReturn(arquivosEsperados);
+        Mockito.when(analisadorDadosServiceMock.analisarConteudo(arquivoEsperadoMock)).thenReturn(resumoEsperadoMock);
+
+        processadorArquivosImpl.processar();
+
+        verify(arquivoServiceMock).apagarArquivoProcessado(arquivoEsperadoMock);
+    }
 }

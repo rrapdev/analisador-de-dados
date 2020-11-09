@@ -5,7 +5,7 @@ Este sistema foi desenvolvido como parte de uma avaliação técnica para o Agib
 
 #### Aletrações importantes na versão 0.0.2-SNAPSHOT:
 
- * Cobertura de testes aumentada, sendo 100% segundo o coverage e 97% segundo o codecov;
+ * Cobertura de testes aumentada, sendo 100% segundo o coverage e 96% segundo o codecov;
 
  * Adoção de princípios SOLID e refatoramento nas classes dos projetos para melhorar código limpo e reduzir 
  responsabilidades das classes, aumentando
@@ -15,7 +15,7 @@ Este sistema foi desenvolvido como parte de uma avaliação técnica para o Agib
  da aplicação;
  
  * A versão do Java foi atualizada para 11 e importantes recursos de manipulação de arquivos e strings foram utilizados, como 
- `Files.readString()`, `Files.createFile()` e `Files.writeString()`.
+ `Files.readString()`, `Files.createFile()` e `Files.writeString()`. Além de programação funcional com lambda.
  
  * SpringBoot foi utilizado para injeção de dependência das classes, executar o monitoramento de tempos em tempos, 
  assim como para carregar o contexto da aplicação e para facilitar a criação e execução dos testes.
@@ -26,6 +26,9 @@ Este sistema foi desenvolvido como parte de uma avaliação técnica para o Agib
  * Para representar a lógica de negócio, foi adicionada chamada de validação dos arquivos de vendas na classe de serviço ```ProcessadorArquivosImpl.class```. No
  entanto a implementação da validação foi incluída na classe ```ArquivoVenda.class```.
 
+ * O projeto foi integrado ao docker a partir do Jib. Há instruções de como criar um container e rodá-lo no final desta página.
+ 
+ 
 #### Funcionamento:
 Sistema para importação de lotes de arquivos de vendas. Os arquivos são processados, analisados e um relatório é
 produzido com os dados consolidados.
@@ -52,14 +55,21 @@ Um novo arquivo (com terminação *.done.dat*), com os dados do resumo, é gerad
    src/main/resources/data/out/{nome_do_arquivo}.done.dat
 ```
 
-#### Agendamento (Scheduling)
-Foi adicionado, através do Spring Framework, um agendador que de tempos em tempos verifica arquivos de vendas na pasta de 
-entrada.
-
+ #### Integração com Docker:
+ 
+Para rodar a sua aplicação a partir de um container docker, certifique-se de que sua máquina possui docker e 
+docker-compose instalados. Depois crie uma imagem docker da aplicação executando o comando a partir da raiz do projeto:
+ 
 ```
-   http://localhost:8181/swagger-ui.html
+./mvnw verify jib:dockerBuild -Dskiptests=true
 ```
-
+ Por fim, rode seu container utilizando o comando:
+ 
+ ```
+docker-compose -f src/main/docker/app.yml up -d
+ ```
+ 
+ 
 #### Principais tecnologias utilizadas:
 
  * Java 8;

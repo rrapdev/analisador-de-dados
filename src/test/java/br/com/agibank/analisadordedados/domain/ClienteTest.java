@@ -6,8 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.*;
 
 @RunWith(JUnit4.class)
 public class ClienteTest {
@@ -43,6 +42,8 @@ public class ClienteTest {
         cliente.setCnpj(CNPJ_123456);
         cliente.setNome(NOME_KENT_BECK);
         cliente.setAreaNegocio(AREA_NEGOCIO_TESTES);
+        assertTrue(cliente.equals(cliente));
+        assertEquals(1075161335, cliente.hashCode());
         assertEquals(NOME_KENT_BECK, cliente.getNome());
         assertEquals(CNPJ_123456, cliente.getCnpj());
         assertEquals(AREA_NEGOCIO_TESTES, cliente.getAreaNegocio());

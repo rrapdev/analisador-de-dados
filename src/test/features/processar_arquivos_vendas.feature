@@ -25,3 +25,4 @@ Funcionalidade: Processar novos arquivos automaticamente
     Entao deveria gerar arquivo contendo o seguinte resumo
       | Quantidade Clientes | Quantidade Vendedores | Id Venda Mais Cara | Nome Pior Vendedor |
       | 2                   | 2                     | 10                 | Paulo              |
+    E deveria apagar arquivo original

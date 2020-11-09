@@ -51,7 +51,7 @@ public class ProcessarNovosArquivosVendaStepdefs extends Stepdefs {
 
     @Quando("^passarem dez segundos$")
     public void passaremDezSegundos() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(10000);
     }
 
     @Quando("^processar arquivos de vendas$")
@@ -75,7 +75,7 @@ public class ProcessarNovosArquivosVendaStepdefs extends Stepdefs {
     public void deveriaNaoGerarNenhumArquivoNaPasta(String diretorioSaida) throws Throwable {
 
         assertEquals(EXPECTATIVA_QUE_NAO_EXISTA_ARQUIVOS,
-                manipuladorArquivoTestHelper.verificarSeExisteAlgumArquivoEmDiretorioSaida(diretorioSaida));
+                manipuladorArquivoTestHelper.verificarSeExisteAlgumArquivoEmDiretorio(diretorioSaida));
     }
 
     @Entao("^deveria gerar arquivo contendo o seguinte resumo$")
@@ -124,5 +124,11 @@ public class ProcessarNovosArquivosVendaStepdefs extends Stepdefs {
     @E("^deveria retornar mensagem de excecao arquivo sem extensao valida$")
     public void deveriaRetornarMensagemDeExcecaoArquivoSemExtensaoValida() {
         assertEquals(mensagemExceptionEsperada, mensagemExceptionRetornada);
+    }
+
+    @E("^deveria apagar arquivo original$")
+    public void deveriaApagarArquivoOriginal() {
+        assertEquals(EXPECTATIVA_QUE_NAO_EXISTA_ARQUIVOS,
+                manipuladorArquivoTestHelper.verificarSeExisteAlgumArquivoEmDiretorio("data/in"));
     }
 }

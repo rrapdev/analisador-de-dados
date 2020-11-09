@@ -117,6 +117,12 @@ public class ArquivoServiceImplTest {
                 CAMINHO_DIRETORIO_PADRAO_SAIDA_DADOS + arquivoEsperado.obterNomeDoArquivoConsolidado());
     }
 
+    @Test
+    public void aoApagarArquivoProcessadoDeveriaDelegarParaManipuladorArquivoApagar() {
+        arquivoServiceImpl.apagarArquivoProcessado(arquivoEsperado);
+        verify(manipuladorArquivosMock).apagarArquivo(arquivoEsperado);
+    }
+
     private Arquivo obterPrimeiroArquivoDaLista(List<Arquivo> listaArquivosRetornados) {
         return listaArquivosRetornados.get(0);
     }

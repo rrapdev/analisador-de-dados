@@ -10,4 +10,6 @@ public interface ArquivoService {
     List<Arquivo> lerArquivos();
 
     void gerarArquivoConsolidado(Resumo resumo, Arquivo arquivo);
+
+    void apagarArquivoProcessado(Arquivo arquivo);
 }

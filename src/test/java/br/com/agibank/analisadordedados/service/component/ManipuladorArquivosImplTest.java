@@ -1,6 +1,7 @@
 package br.com.agibank.analisadordedados.service.component;
 
 import br.com.agibank.analisadordedados.cucumber.datatable.ArquivoDataTable;
+import br.com.agibank.analisadordedados.domain.Arquivo;
 import br.com.agibank.analisadordedados.domain.Resumo;
 import br.com.agibank.analisadordedados.exception.FalhaAoAcessarDiretorioArquivoException;
 import br.com.agibank.analisadordedados.service.component.impl.ManipuladorArquivosImpl;
@@ -17,6 +18,7 @@ import java.util.stream.Stream;
 
 import static br.com.agibank.analisadordedados.util.ConstantesUtil.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ManipuladorArquivosImplTest {
@@ -25,6 +27,9 @@ public class ManipuladorArquivosImplTest {
 
     @Mock
     Resumo resumoMock;
+
+    @Mock
+    Arquivo arquivoMock;
 
     private ManipuladorArquivoTestHelper manipuladorArquivoTestHelper = new ManipuladorArquivoTestHelper();
 
@@ -77,6 +82,21 @@ public class ManipuladorArquivosImplTest {
         String caminhoInvalido = "caminho/invalido/arquivo.txt";
         manipuladorArquivosImpl.criarArquivoContendoResumoNoDiretorioPadraoSaida(resumoMock,
                 caminhoInvalido);
+    }
+
+    @Test
+    public void aoApagarArquivoDeveriaApagarComoEsperado() {
+        Path pathEsperado = Path.of(CAMINHO_DIRETORIO_PADRAO_ENTRADA_DADOS + "/" + NOME_ARQUIVO_TXT);
+        Mockito.when(arquivoMock.getPath()).thenReturn(pathEsperado);
+        manipuladorArquivosImpl.apagarArquivo(arquivoMock);
+        assertFalse(manipuladorArquivoTestHelper.verificarSeExisteAlgumArquivoEmDiretorio("data/out"));
+    }
+
+    @Test(expected = FalhaAoAcessarDiretorioArquivoException.class)
+    public void aoApagarArquivoComCaminhoInvalidoDeveriaLancarExcecao() {
+        Path pathEsperado = Path.of("caminho/invalido");
+        Mockito.when(arquivoMock.getPath()).thenReturn(pathEsperado);
+        manipuladorArquivosImpl.apagarArquivo(arquivoMock);
     }
 
     private ArquivoDataTable criarArquivoDeVendasComNome(String nomeArquivo) {

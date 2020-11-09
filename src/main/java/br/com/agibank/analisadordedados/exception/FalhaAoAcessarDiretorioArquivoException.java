@@ -10,4 +10,5 @@ public class FalhaAoAcessarDiretorioArquivoException extends RuntimeException {
     public static final String MENSAGEM_FALHA_AO_CRIAR_ARQUIVO = "Não foi possível criar arquivo.";
 
     public static final String MENSAGEM_FALHA_AO_LER_ARQUIVO = "Não foi possível ler o arquivo.";
+    public static final String MENSAGEM_FALHA_AO_APAGAR_ARQUIVO = "Não foi possível apagar o arquivo processado.";
 }

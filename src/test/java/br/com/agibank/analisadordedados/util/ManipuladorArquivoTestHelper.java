@@ -74,7 +74,7 @@ public class ManipuladorArquivoTestHelper {
         });
     }
 
-    public boolean verificarSeExisteAlgumArquivoEmDiretorioSaida(String diretorio) {
+    public boolean verificarSeExisteAlgumArquivoEmDiretorio(String diretorio) {
         List<Path> listaArquivos = listarArquivosDoDiretorio(PATH_DIRETORIO_RESOURCES + diretorio);
         return !listaArquivos.isEmpty();
     }

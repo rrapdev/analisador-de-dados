@@ -1,5 +1,6 @@
 package br.com.agibank.analisadordedados.service.component.impl;
 
+import br.com.agibank.analisadordedados.domain.Arquivo;
 import br.com.agibank.analisadordedados.domain.Resumo;
 import br.com.agibank.analisadordedados.exception.FalhaAoAcessarDiretorioArquivoException;
 import br.com.agibank.analisadordedados.service.component.ManipuladorArquivos;
@@ -12,8 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-import static br.com.agibank.analisadordedados.exception.FalhaAoAcessarDiretorioArquivoException.MENSAGEM_FALHA_AO_CRIAR_ARQUIVO;
-import static br.com.agibank.analisadordedados.exception.FalhaAoAcessarDiretorioArquivoException.MENSAGEM_FALHA_AO_LER_DIRETORIO;
+import static br.com.agibank.analisadordedados.exception.FalhaAoAcessarDiretorioArquivoException.*;
 
 @Component
 public class ManipuladorArquivosImpl implements ManipuladorArquivos {
@@ -36,6 +36,15 @@ public class ManipuladorArquivosImpl implements ManipuladorArquivos {
             Files.writeString(file, resumo.gerar());
         } catch (IOException e) {
             throw new FalhaAoAcessarDiretorioArquivoException(MENSAGEM_FALHA_AO_CRIAR_ARQUIVO + caminhoArquivoSaidaComNome);
+        }
+    }
+
+    @Override
+    public void apagarArquivo(Arquivo arquivo) {
+        try {
+            Files.delete(arquivo.getPath());
+        } catch (IOException e) {
+            throw new FalhaAoAcessarDiretorioArquivoException(MENSAGEM_FALHA_AO_APAGAR_ARQUIVO);
         }
     }
 }

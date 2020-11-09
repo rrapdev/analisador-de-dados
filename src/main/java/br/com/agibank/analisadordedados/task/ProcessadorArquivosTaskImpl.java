@@ -19,7 +19,7 @@ public class ProcessadorArquivosTaskImpl implements ProcessadorArquivosTask {
 
     private static final Logger log = LoggerFactory.getLogger(ProcessadorArquivosTaskImpl.class);
 
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelay = 10000)
     public void processarNovosArquivosDeVendas() {
         log.info("Monitorando diretório de entrada de arquivos.");
         this.processadorArquivos.processar();

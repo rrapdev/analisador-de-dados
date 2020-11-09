@@ -1,5 +1,6 @@
 package br.com.agibank.analisadordedados.service.component;
 
+import br.com.agibank.analisadordedados.domain.Arquivo;
 import br.com.agibank.analisadordedados.domain.Resumo;
 
 import java.nio.file.Path;
@@ -11,4 +12,5 @@ public interface ManipuladorArquivos {
 
     void criarArquivoContendoResumoNoDiretorioPadraoSaida(Resumo resumo, String caminhoCompletoArquivoSaida);
 
+    void apagarArquivo(Arquivo arquivo);
 }

@@ -33,5 +33,6 @@ public class ProcessadorArquivosImpl implements ProcessadorArquivos {
         arquivo.validar();
         Resumo resumo = analisadorDadosService.analisarConteudo(arquivo);
         arquivoService.gerarArquivoConsolidado(resumo, arquivo);
+        arquivoService.apagarArquivoProcessado(arquivo);
     }
 }

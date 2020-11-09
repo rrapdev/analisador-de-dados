@@ -1,0 +1,6 @@
+version: '2'
+services:
+  analisador-de-dados-app:
+    image: analisador_de_dados_application
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
