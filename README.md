@@ -4,7 +4,7 @@
 Este sistema foi desenvolvido como parte de uma avaliação técnica de Java, SpringBoot e Orientação a Objetos.
 
 
-#### Aletrações importantes na versão 0.0.2-SNAPSHOT:
+#### Alterações importantes na versão 0.0.2-SNAPSHOT:
 
  * Cobertura de testes aumentada, sendo 100% segundo o coverage e 97% segundo o codecov;
 
