@@ -6,7 +6,7 @@ Este sistema foi desenvolvido como parte de uma avaliação técnica de Java, Sp
 
 #### Aletrações importantes na versão 0.0.2-SNAPSHOT:
 
- * Cobertura de testes aumentada, sendo 100% segundo o coverage e 96% segundo o codecov;
+ * Cobertura de testes aumentada, sendo 100% segundo o coverage e 97% segundo o codecov;
 
  * Adoção de princípios SOLID e refatoramento nas classes dos projetos para melhorar código limpo e reduzir 
  responsabilidades das classes, aumentando
