@@ -1,7 +1,8 @@
 [![rrapdev](https://circleci.com/gh/rrapdev/analisador-de-dados.svg?style=shield)](https://github.com/rrapdev/analisador-de-dados) [![codecov](https://codecov.io/gh/rrapdev/analisador-de-dados/branch/main/graph/badge.svg?token=NT4GgfHsFN)](https://codecov.io/gh/rrapdev/analisador-de-dados)
 
 # Analisador de Dados
-Este sistema foi desenvolvido como parte de uma avaliação técnica para o Agibank, a partir da DBC Company.
+Este sistema foi desenvolvido como parte de uma avaliação técnica de Java, SpringBoot e Orientação a Objetos.
+
 
 #### Aletrações importantes na versão 0.0.2-SNAPSHOT:
 
@@ -21,7 +22,7 @@ Este sistema foi desenvolvido como parte de uma avaliação técnica para o Agib
  assim como para carregar o contexto da aplicação e para facilitar a criação e execução dos testes.
  
  * Removida API Rest que estimulava processamento de arquivos. O Processamento de arquivos de vendas agora roda em 
-  background através do uso das anotações do Spring @EnableScheduling e @Scheduled;
+  background através do uso das anotações do Spring @EnableScheduling e @Scheduled, melhorando a performance.
   
  * Para representar a lógica de negócio, foi adicionada chamada de validação dos arquivos de vendas na classe de serviço ```ProcessadorArquivosImpl.class```. No
  entanto a implementação da validação foi incluída na classe ```ArquivoVenda.class```.
@@ -55,6 +56,7 @@ Um novo arquivo (com terminação *.done.dat*), com os dados do resumo, é gerad
    src/main/resources/data/out/{nome_do_arquivo}.done.dat
 ```
 
+
  #### Integração com Docker:
  
 Para rodar a sua aplicação a partir de um container docker, certifique-se de que sua máquina possui docker e 
@@ -76,9 +78,11 @@ docker-compose -f src/main/docker/app.yml up -d
  * Spring Boot 2.3.5;
  * Maven;
  * Lombok;
+ * Docker com Jit;
  * Testes (Cucumber, JUnit, Mockito);
  * Integração Contínua com CircleCI;
  * Cobertura de Código com Codecov.
+ 
  
  #### Testes:
  
