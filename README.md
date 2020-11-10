@@ -73,7 +73,7 @@ docker-compose -f src/main/docker/app.yml up -d
  
 #### Principais tecnologias utilizadas:
 
- * Java 8;
+ * Java 11;
  * Spring Boot 2.3.5;
  * Maven;
  * Lombok;
